@@ -62,8 +62,24 @@ namespace DelvUIPlugin {
         public Vector4 NPCColorNeutral = new Vector4(214f/255f, 145f/255f, 64f/255f, 1f);
         public Vector4 NPCColorFriendly = new Vector4(0f/255f, 145f/255f, 6f/255f, 1f);
 
+        #region DRG Configuration
+
+        public int DRGEyeOfTheDragonHeight { get; set; } = 13;
+        public int DRGEyeOfTheDragonBarWidth { get; set; } = 125;
+        public int DRGEyeOfTheDragonPadding { get; set; } = 2;
+        public int DRGBaseXOffset { get; set; } = 127;
+        public int DRGBaseYOffset { get; set; } = 433;
+        public int DRGBloodBarHeight { get; set; } = 13;
+        public int DRGInterBarOffset { get; set; } = 0;
+        public Vector4 DRGEyeOfTheDragonColor = new Vector4(1f, 182f / 255f, 194f / 255f, 1f);
+        public Vector4 DRGBloodOfTheDragonColor = new Vector4(78f / 255f, 198f / 255f, 238f / 255f, 1f);
+        public Vector4 DRGLifeOfTheDragonColor = new Vector4(139f / 255f, 24f / 255f, 24f / 255f, 1f);
+        public Vector4 DRGEmptyColor = new Vector4(143f / 255f, 141f / 255f, 142f / 255f, 1f);
+
+        #endregion
+
         #region WAR Configuration
-        
+
         public int WARStormsEyeHeight { get; set; } = 20;
         public int WARStormsEyeWidth { get; set; } = 254;
         public int WARBaseXOffset { get; set; } = 127;
@@ -210,6 +226,37 @@ namespace DelvUIPlugin {
                     ["background"] = ImGui.ColorConvertFloat4ToU32(JobColorDRG.AdjustColor(-.8f)),
                     ["gradientLeft"] = ImGui.ColorConvertFloat4ToU32(JobColorDRG.AdjustColor(-.1f)),
                     ["gradientRight"] = ImGui.ColorConvertFloat4ToU32(JobColorDRG.AdjustColor(.1f))
+                },
+                [Jobs.DRG * 1000] = new Dictionary<string, uint> // Eye of the Dragon
+                {
+                    ["base"] = ImGui.ColorConvertFloat4ToU32(DRGEyeOfTheDragonColor),
+                    ["background"] = ImGui.ColorConvertFloat4ToU32(DRGEyeOfTheDragonColor.AdjustColor(-.8f)),
+                    ["gradientLeft"] = ImGui.ColorConvertFloat4ToU32(DRGEyeOfTheDragonColor.AdjustColor(-.1f)),
+                    ["gradientRight"] = ImGui.ColorConvertFloat4ToU32(DRGEyeOfTheDragonColor.AdjustColor(.1f))
+                },
+                
+                [Jobs.DRG * 1000 + 1] = new Dictionary<string, uint> // Blood of the Dragon
+                {
+                    ["base"] = ImGui.ColorConvertFloat4ToU32(DRGBloodOfTheDragonColor),
+                    ["background"] = ImGui.ColorConvertFloat4ToU32(DRGBloodOfTheDragonColor.AdjustColor(-.8f)),
+                    ["gradientLeft"] = ImGui.ColorConvertFloat4ToU32(DRGBloodOfTheDragonColor.AdjustColor(-.1f)),
+                    ["gradientRight"] = ImGui.ColorConvertFloat4ToU32(DRGBloodOfTheDragonColor.AdjustColor(.1f))
+                },
+                
+                [Jobs.DRG * 1000 + 2] = new Dictionary<string, uint> // Life of the Dragon
+                {
+                    ["base"] = ImGui.ColorConvertFloat4ToU32(DRGLifeOfTheDragonColor),
+                    ["background"] = ImGui.ColorConvertFloat4ToU32(DRGLifeOfTheDragonColor.AdjustColor(-.8f)),
+                    ["gradientLeft"] = ImGui.ColorConvertFloat4ToU32(DRGLifeOfTheDragonColor.AdjustColor(-.1f)),
+                    ["gradientRight"] = ImGui.ColorConvertFloat4ToU32(DRGLifeOfTheDragonColor.AdjustColor(.1f))
+                },
+                
+                [Jobs.DRG * 1000 + 3] = new Dictionary<string, uint> // DRG Empty
+                {
+                    ["base"] = ImGui.ColorConvertFloat4ToU32(DRGEmptyColor),
+                    ["background"] = ImGui.ColorConvertFloat4ToU32(DRGEmptyColor.AdjustColor(-.8f)),
+                    ["gradientLeft"] = ImGui.ColorConvertFloat4ToU32(DRGEmptyColor.AdjustColor(-.1f)),
+                    ["gradientRight"] = ImGui.ColorConvertFloat4ToU32(DRGEmptyColor.AdjustColor(.1f))
                 },
 
                 [Jobs.NIN] = new Dictionary<string, uint>

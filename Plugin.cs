@@ -98,6 +98,7 @@ namespace DelvUIPlugin {
                 Jobs.WHM => new WhiteMageHudWindow(_pluginInterface, _pluginConfiguration),
                 
                 //Melee DPS
+                Jobs.DRG => new DragoonHudWindow(_pluginInterface, _pluginConfiguration),
                 Jobs.SAM => new SamuraiHudWindow(_pluginInterface, _pluginConfiguration),
                 
                 //Ranged DPS
@@ -142,7 +143,6 @@ namespace DelvUIPlugin {
                 Jobs.NIN => new UnitframeOnlyHudWindow(_pluginInterface, _pluginConfiguration),
                 Jobs.SCH => new UnitframeOnlyHudWindow(_pluginInterface, _pluginConfiguration),
                 Jobs.AST => new UnitframeOnlyHudWindow(_pluginInterface, _pluginConfiguration),
-                Jobs.DRG => new UnitframeOnlyHudWindow(_pluginInterface, _pluginConfiguration),
                 Jobs.BLU => new UnitframeOnlyHudWindow(_pluginInterface, _pluginConfiguration),
                 _ => _hudWindow
             };
