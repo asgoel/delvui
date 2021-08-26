@@ -86,9 +86,23 @@ namespace DelvUIPlugin.Interface {
                     }
 
                     var focusBarWidth = _pluginConfiguration.FocusBarWidth;
-                    if (ImGui.DragInt("Focus Width", ref totBarWidth, .1f, 1, 1000))
+                    if (ImGui.DragInt("Focus Width", ref focusBarWidth, .1f, 1, 1000))
                     {
                         _pluginConfiguration.FocusBarWidth = focusBarWidth;
+                        _pluginConfiguration.Save();
+                    }
+
+                    var healthBarXOffset = _pluginConfiguration.HealthBarXOffset;
+                    if (ImGui.DragInt("Health/Target Bar X Offset", ref healthBarXOffset, .1f, 1, 1000))
+                    {
+                        _pluginConfiguration.HealthBarXOffset = healthBarXOffset;
+                        _pluginConfiguration.Save();
+                    }
+
+                    var healthBarYOffset = _pluginConfiguration.HealthBarYOffset;
+                    if (ImGui.DragInt("Health/Target Bar Y Offset", ref healthBarYOffset, .1f, 1, 1000))
+                    {
+                        _pluginConfiguration.HealthBarYOffset = healthBarYOffset;
                         _pluginConfiguration.Save();
                     }
 

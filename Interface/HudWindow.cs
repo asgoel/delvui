@@ -34,8 +34,8 @@ namespace DelvUIPlugin.Interface {
 
         protected float CenterX => ImGui.GetMainViewport().Size.X / 2f;
         protected float CenterY => ImGui.GetMainViewport().Size.Y / 2f;
-        protected int XOffset => 160;
-        protected int YOffset => 460;
+        protected int XOffset => PluginConfiguration.HealthBarXOffset;
+        protected int YOffset => PluginConfiguration.HealthBarYOffset;
         protected int HealthBarHeight => PluginConfiguration.HealthBarHeight;
         protected int HealthBarWidth => PluginConfiguration.HealthBarWidth;
         protected int TargetBarHeight => PluginConfiguration.TargetBarHeight;

@@ -23,6 +23,9 @@ namespace DelvUIPlugin {
         public int CastBarWidth { get; set; } = 254;
         public int CastBarXOffset { get; set; } = 0;
         public int CastBarYOffset { get; set; } = 460;
+
+        public int HealthBarXOffset { get; set; } = 160;
+        public int HealthBarYOffset { get; set; } = 460;
         
 
         public bool ShowCastBar = true;
