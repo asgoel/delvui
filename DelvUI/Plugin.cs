@@ -102,7 +102,7 @@ namespace DelvUI
 
         private void BuildFont()
         {
-            string fontFile = Path.Combine(Path.GetDirectoryName(AssemblyLocation) ?? "", "Media", "Fonts", "big-noodle-too.ttf");
+            string fontFile = Path.Combine(Path.GetDirectoryName(AssemblyLocation) ?? "", "Media", "Fonts", "Expressway.ttf");
             _fontBuilt = false;
 
             if (File.Exists(fontFile))
