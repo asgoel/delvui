@@ -2,6 +2,7 @@
 using Dalamud.Game.ClientState.Structs;
 using Dalamud.Plugin;
 using DelvUI.Helpers;
+using DelvUI.Interface.Jobs;
 using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
 using System;
@@ -11,7 +12,7 @@ using Actor = Dalamud.Game.ClientState.Actors.Types.Actor;
 
 namespace DelvUI.Interface.StatusEffects
 {
-    public class StatusEffectsListHud : HudElement, IHudElementWithActor
+    public class StatusEffectsListHud : HudElement, IHudElementWithFilter
     {
         private StatusEffectsListConfig Config => (StatusEffectsListConfig)_config;
 
@@ -19,11 +20,16 @@ namespace DelvUI.Interface.StatusEffects
         private uint _colCount;
         private GrowthDirections _lastGrowthDirections;
         private bool _showingTooltip = false;
-
+        private List<uint> _currentEffectFilter;
         public Actor Actor { get; set; } = null;
 
         public StatusEffectsListHud(string ID, StatusEffectsListConfig config) : base(ID, config)
         {
+        }
+
+        public void AddFilter(JobHud jobHud)
+        {
+            _currentEffectFilter = jobHud.GetJobSpecificBuffs();
         }
 
         private uint CalculateLayout(List<StatusEffectData> list)
@@ -156,7 +162,11 @@ namespace DelvUI.Interface.StatusEffects
 
         public override void Draw(Vector2 origin)
         {
-            Draw(origin, new List<uint>());
+            if (_currentEffectFilter == null)
+            {
+                _currentEffectFilter = new List<uint>();
+            }
+            Draw(origin, _currentEffectFilter);
         }
 
         public void Draw(Vector2 origin, List<uint> filterStatusEffects)

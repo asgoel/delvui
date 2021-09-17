@@ -21,6 +21,7 @@ namespace DelvUI.Interface
         private List<IHudElementWithActor> _hudElementsUsingTarget;
         private List<IHudElementWithActor> _hudElementsUsingTargetOfTarget;
         private List<IHudElementWithActor> _hudElementsUsingFocusTarget;
+        private List<IHudElementWithFilter> _hudElementsRequiringFilter;
 
         private PrimaryResourceHud _primaryResourceHud;
         private JobHud _jobHud = null;
@@ -42,6 +43,7 @@ namespace DelvUI.Interface
             _hudElementsUsingTarget.Clear();
             _hudElementsUsingTargetOfTarget.Clear();
             _hudElementsUsingFocusTarget.Clear();
+            _hudElementsRequiringFilter.Clear();
         }
 
         private void OnConfigReset(object sender, EventArgs e)
@@ -56,6 +58,7 @@ namespace DelvUI.Interface
             _hudElementsUsingTarget = new List<IHudElementWithActor>();
             _hudElementsUsingTargetOfTarget = new List<IHudElementWithActor>();
             _hudElementsUsingFocusTarget = new List<IHudElementWithActor>();
+            _hudElementsRequiringFilter = new List<IHudElementWithFilter>();
 
             CreateUnitFrames();
             CreateCastbars();
@@ -110,6 +113,11 @@ namespace DelvUI.Interface
             var playerDebuffs = new StatusEffectsListHud("playerDebuffs", playerDebuffsConfig);
             _hudElements.Add(playerDebuffs);
             _hudElementsUsingPlayer.Add(playerDebuffs);
+
+            var raidJobBuffsListCOnfig = ConfigurationManager.GetInstance().GetConfigObject<RaidJobBuffsListConfig>();
+            var raidJobBuffs = new StatusEffectsListHud("raidJobBuffs", raidJobBuffsListCOnfig);
+            _hudElementsRequiringFilter.Add(raidJobBuffs);
+            _hudElementsUsingPlayer.Add(raidJobBuffs);
 
             var targetBuffsConfig = ConfigurationManager.GetInstance().GetConfigObject<TargetBuffsListConfig>();
             var targetBuffs = new StatusEffectsListHud("targetBuffs", targetBuffsConfig);
@@ -182,6 +190,13 @@ namespace DelvUI.Interface
             if (_jobHud != null && _jobHud.Config.Enabled)
             {
                 _jobHud.Draw(_origin);
+            }
+
+            // element requiring filter
+            foreach (var element in _hudElementsRequiringFilter)
+            {
+                element.AddFilter(_jobHud);
+                ((HudElement)element).Draw(_origin);
             }
 
             // tooltip

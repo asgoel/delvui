@@ -94,6 +94,31 @@ namespace DelvUI.Interface.StatusEffects
     }
 
     [Serializable]
+    [Section("Buffs and Debuffs")]
+    [SubSection("Job/Raid Buffs", 0)]
+    public class RaidJobBuffsListConfig : StatusEffectsListConfig
+    {
+        public new static RaidJobBuffsListConfig DefaultConfig()
+        {
+            var pos = new Vector2(-500,  HUDConstants.BaseHUDOffsetY - 100);
+            var iconConfig = new StatusEffectIconConfig();
+            iconConfig.DispellableBorderConfig.Enabled = false;
+            iconConfig.OwnedBorderConfig.Enabled = false;
+            iconConfig.Size = new Vector2(30, 30);
+
+            var config = new RaidJobBuffsListConfig(pos, new Vector2(1000, 100), true, false, false, GrowthDirections.Out | GrowthDirections.Right, iconConfig);
+            config.ShowTooltips = false;
+            return config;
+        }
+
+        public RaidJobBuffsListConfig(Vector2 position, Vector2 size, bool showBuffs, bool showDebuffs, bool showPermanentEffects,
+            GrowthDirections growthDirections, StatusEffectIconConfig iconConfig)
+            : base(position, size, showBuffs, showDebuffs, showPermanentEffects, growthDirections, iconConfig)
+        {
+        }
+    }
+
+    [Serializable]
     public class StatusEffectsListConfig : MovablePluginConfigObject
     {
         [Checkbox("Fill Rows First")]

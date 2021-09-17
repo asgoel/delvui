@@ -1,4 +1,5 @@
 ﻿using Dalamud.Game.ClientState.Actors.Types;
+using DelvUI.Interface.Jobs;
 using DelvUI.Config;
 using System.Numerics;
 
@@ -21,5 +22,9 @@ namespace DelvUI.Interface
     public interface IHudElementWithActor
     {
         public Actor Actor { get; set; }
+    }
+    public interface IHudElementWithFilter: IHudElementWithActor
+    {
+        public void AddFilter(JobHud jobHud);
     }
 }
